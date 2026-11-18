@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: mensajeria
+
+server:
+  port: 8083
+
+# Mismo secreto que Usuarios y Plazoleta: así los tres aceptan el mismo token.
+jwt:
+  secret: ${JWT_SECRET:cambia-este-secreto-por-uno-largo-de-minimo-32-caracteres}
+  expiration-ms: 3600000
+
+sms:
+  # "log": no envía nada de verdad, escribe el SMS en la consola (ideal para desarrollo y pruebas).
+  # "twilio": envía el SMS real con Twilio; requiere las variables de abajo.
+  provider: ${SMS_PROVIDER:log}
+
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID:}
+  auth-token: ${TWILIO_AUTH_TOKEN:}
+  from-number: ${TWILIO_FROM_NUMBER:}
